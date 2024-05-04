@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import AppNavbar from "./components/AppNavbar.jsx";
+import AppNavbar from "./components/Navbar/AppNavbar.jsx";
 import {AppRoutes} from "./utils/appRoutes.js";
 import "react-toastify/dist/ReactToastify.css";
 import {ToastContainer} from "react-toastify";
