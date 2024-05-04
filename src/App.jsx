@@ -1,35 +1,72 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "bootstrap/dist/css/bootstrap.min.css"
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import AppNavbar from "./components/AppNavbar.jsx";
+import {AppRoutes} from "./utils/appRoutes.js";
+import "react-toastify/dist/ReactToastify.css";
+import {ToastContainer} from "react-toastify";
+import Unprotected from "./components/Unprotected.jsx";
+import {Provider} from "react-redux";
+import store from "./redux/store.js";
+import LoginPage from "./pages/Login/LoginPage.jsx";
+import RegisterPage from "./pages/Register/RegisterPage.jsx";
+import HomePage from "./pages/Home/HomePage.jsx";
+import Protected from "./components/Protected.jsx";
+import ProfilePage from "./pages/Profile/ProfilePage.jsx";
 
-function App() {
-  const [count, setCount] = useState(0)
+const router = createBrowserRouter([
+    {
+        path: AppRoutes.HOME,
+        element: (
+            <>
+                <Protected>
+                    <AppNavbar/>
+                    <HomePage/>
+                </Protected>
+            </>
+        )
+    },
+    {
+        path: AppRoutes.LOGIN,
+        element: (
+            <>
+                <Unprotected>
+                    <AppNavbar/>
+                    <LoginPage/>
+                </Unprotected>
+            </>
+        )
+    },
+    {
+        path: AppRoutes.REGISTER,
+        element: (
+            <>
+                <Unprotected>
+                    <AppNavbar/>
+                    <RegisterPage/>
+                </Unprotected>
+            </>
+        )
+    },
+    {
+        path: AppRoutes.PROFILE,
+        element: (
+            <>
+                <Protected>
+                    <AppNavbar/>
+                    <ProfilePage/>
+                </Protected>
+            </>
+        )
+    }
+])
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export default function App() {
+    return (
+        <>
+            <Provider store={store}>
+                <RouterProvider router={router}/>
+                <ToastContainer theme={"colored"}/>
+            </Provider>
+        </>
+    )
 }
-
-export default App
