@@ -1,7 +1,7 @@
 import {Card} from "react-bootstrap";
 import placeholderPhoto from "../../../assets/placeholder_img.svg";
 import Button from "react-bootstrap/Button";
-import "./CarCard.css";
+import CarFeatures from "./CarFeatures.jsx";
 
 export default function CarCard({props}) {
     return (
@@ -9,15 +9,15 @@ export default function CarCard({props}) {
             <Card className={"car-card"}>
                 <Card.Img variant="top" height={"200px"} src={props.image ?? placeholderPhoto} fluid rounded/>
                 <Card.Body>
-                    <Card.Title className={"mb-2"}>{`${props.model} / ${props.type} / ${props.transmission}`}</Card.Title>
-                    <Card.Subtitle>{`Rp. ${props.rentPerDay} / hari`}</Card.Subtitle>
-                    <Card.Text className={"car-description mt-3 text-align-justify"}>
-                        {(props.description) ? props.description : "No description provided for this car."}
-                    </Card.Text>
+                    <Card.Title
+                        className={"mb-2"}>{`${props.model} / ${props.type}`}</Card.Title>
+                    <Card.Subtitle className={"mb-3"}>{`Rp. ${props.rentPerDay} / hari`}</Card.Subtitle>
+                    <CarFeatures capacity={props.capacity} transmission={props.transmission}
+                                 year={props.year}/>
                 </Card.Body>
                 <Card.Footer>
                     <Button className={"w-100"} variant={"outline-primary"}>
-                        View Details
+                        View Full Details
                     </Button>
                 </Card.Footer>
             </Card>

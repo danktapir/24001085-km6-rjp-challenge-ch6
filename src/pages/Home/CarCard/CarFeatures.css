@@ -1,0 +1,9 @@
+.list-car-features {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.list-car-features li p {
+    display: inline;
+    text-align: justify;
+}

@@ -4,13 +4,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getUserProfile} from "../../redux/actions/userAction.js";
+import {getUserProfile} from "../redux/actions/userAction.js";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import {Image} from "react-bootstrap";
-import {AppRoutes} from "../../utils/appRoutes.js";
-import {logout} from "../../redux/actions/authAction.js";
+import {AppRoutes} from "../utils/appRoutes.js";
+import {logout} from "../redux/actions/authAction.js";
 
 export default function AppNavbar() {
     const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function AppNavbar() {
             <Container>
                 <Navbar.Brand as={Link} to={AppRoutes.HOME}>
                     <Image className={"me-3"} src={"/vite.svg"} alt={"Vite Logo"}/>
-                    Car Dashboard
+                    Vite Cars
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
                 <Navbar.Offcanvas
@@ -40,7 +40,7 @@ export default function AppNavbar() {
                     <Offcanvas.Header closeButton>
                         <Image src={"/vite.svg"} alt={"Vite Logo"} className={"me-3"}/>
                         <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                            Car Dashboard
+                            Vite Cars
                         </Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
