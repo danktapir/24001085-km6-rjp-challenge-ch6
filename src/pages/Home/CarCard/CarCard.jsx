@@ -4,12 +4,19 @@ import Button from "react-bootstrap/Button";
 import CarFeatures from "./CarFeatures.jsx";
 import {useNavigate} from "react-router-dom";
 import {AppRoutes} from "../../../utils/appRoutes.js";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setSelectedCar} from "../../../redux/reducers/carReducer.js";
+import {Privileges} from "../../../utils/privileges.js";
+import {useState} from "react";
+import DeleteCarModal from "../DeleteCarModal.jsx";
 
 export default function CarCard({car}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.auth.user);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <>
@@ -29,6 +36,18 @@ export default function CarCard({car}) {
                     }}>
                         View Full Details
                     </Button>
+                    {(user.privilege === Privileges.ADMIN || user.privilege === Privileges.SUPERADMIN) && (
+                        <>
+                            <Button className={"w-100 mt-2"} variant={"outline-success"}>
+                                Edit
+                            </Button>
+                            <Button className={"w-100 mt-2"} variant={"outline-danger"} onClick={handleShow}>
+                                Delete
+                            </Button>
+                            <DeleteCarModal carId={car.id} isShowing={show} handleClose={handleClose}
+                                            handleShow={handleShow}/>
+                        </>
+                    )}
                 </Card.Footer>
             </Card>
         </>

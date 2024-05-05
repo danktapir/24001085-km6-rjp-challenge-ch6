@@ -45,15 +45,24 @@ export default function HomePage() {
                                 </Col>
                             </Row>
                         </Form>
-                        <Row className={"mt-4 g-4"} md={3} lg={4}>
-                            {carsData.map((car, idx) => {
-                                return (
-                                    <Col key={idx}>
-                                        <CarCard car={car}/>
-                                    </Col>
-                                );
-                            })}
-                        </Row>
+                        {(carsData.length > 0) ? (
+                            <>
+                                <Row className={"mt-4 g-4"} md={3} lg={4}>
+                                    {carsData.map((car, idx) => {
+                                        return (
+                                            <Col key={idx}>
+                                                <CarCard car={car}/>
+                                            </Col>
+                                        );
+                                    })}
+                                </Row>
+                            </>
+                        ) : (
+                            <>
+                                <h2 className={"mt-5"}>No cars found.</h2>
+                            </>
+                        )}
+
                     </>
                 )}
             </Container>
