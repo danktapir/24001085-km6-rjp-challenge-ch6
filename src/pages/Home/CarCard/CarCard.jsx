@@ -2,8 +2,12 @@ import {Card} from "react-bootstrap";
 import placeholderPhoto from "../../../assets/placeholder_img.svg";
 import Button from "react-bootstrap/Button";
 import CarFeatures from "./CarFeatures.jsx";
+import {useNavigate} from "react-router-dom";
+import {AppRoutes} from "../../../utils/appRoutes.js";
 
 export default function CarCard({props}) {
+    const navigate = useNavigate();
+
     return (
         <>
             <Card className={"car-card"}>
@@ -16,7 +20,9 @@ export default function CarCard({props}) {
                                  year={props.year}/>
                 </Card.Body>
                 <Card.Footer>
-                    <Button className={"w-100"} variant={"outline-primary"}>
+                    <Button className={"w-100"} variant={"outline-primary"} onClick={(_) => {
+                        navigate(AppRoutes.CAR_DETAILS)
+                    }}>
                         View Full Details
                     </Button>
                 </Card.Footer>

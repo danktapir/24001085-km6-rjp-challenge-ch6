@@ -10,7 +10,7 @@ export default function CarFeatures({capacity, transmission, year}) {
             <li className="mb-3">
                 <img
                     className="img-fluid"
-                    src="../../../assets/fi_users.svg"
+                    src="/src/assets/fi_users.svg"
                 />
                 <p className="car-features">
                     {capacity} orang
@@ -19,7 +19,7 @@ export default function CarFeatures({capacity, transmission, year}) {
             <li className="mb-3">
                 <img
                     className="img-fluid"
-                    src="../../../assets/fi_settings.svg"
+                    src="/src/assets/fi_settings.svg"
                 />
                 <p className="car-features">
                     {getProperTransmissionName()}
@@ -28,7 +28,7 @@ export default function CarFeatures({capacity, transmission, year}) {
             <li className="mb-3">
                 <img
                     className="img-fluid"
-                    src="../../../assets/fi_calendar.svg"
+                    src="/src/assets/fi_calendar.svg"
                 />
                 <p className="car-features">
                     Tahun {year}

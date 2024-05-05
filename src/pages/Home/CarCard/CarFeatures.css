@@ -6,4 +6,5 @@
 .list-car-features li p {
     display: inline;
     text-align: justify;
+    padding-left: 8px;
 }

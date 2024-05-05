@@ -12,6 +12,7 @@ import RegisterPage from "./pages/Register/RegisterPage.jsx";
 import HomePage from "./pages/Home/HomePage.jsx";
 import Protected from "./components/Protected.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
+import CarDetailsPage from "./pages/CarDetails/CarDetailsPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -57,7 +58,18 @@ const router = createBrowserRouter([
                 </Protected>
             </>
         )
-    }
+    },
+    {
+        path: AppRoutes.CAR_DETAILS,
+        element: (
+            <>
+                <Protected>
+                    <AppNavbar/>
+                    <CarDetailsPage/>
+                </Protected>
+            </>
+        )
+    },
 ])
 
 export default function App() {
