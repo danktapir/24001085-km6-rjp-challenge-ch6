@@ -27,32 +27,34 @@ export default function HomePage() {
     return (
         <>
             <Container>
-                <Form>
-                    <Row className={"g-2"}>
-                        <Col md={4} lg={4}>
-                            <Form.Control
-                                type="search"
-                                placeholder="Search by car's model name..."
-                                aria-label="Search"
-                            />
-                        </Col>
-                        <Col>
-                            <Button variant="outline-primary">Search</Button>
-                        </Col>
-                    </Row>
-                </Form>
                 {isLoading ? (
                     <h2>Loading...</h2>
                 ) : (
-                    <Row className={"mt-4 g-4"} md={3} lg={4}>
-                        {carsData.map((car, idx) => {
-                            return (
-                                <Col key={idx}>
-                                    <CarCard props={car}/>
+                    <>
+                        <Form>
+                            <Row className={"g-2"}>
+                                <Col md={4} lg={4}>
+                                    <Form.Control
+                                        type="search"
+                                        placeholder="Search by car's model name..."
+                                        aria-label="Search"
+                                    />
                                 </Col>
-                            );
-                        })}
-                    </Row>
+                                <Col>
+                                    <Button variant="outline-primary">Search</Button>
+                                </Col>
+                            </Row>
+                        </Form>
+                        <Row className={"mt-4 g-4"} md={3} lg={4}>
+                            {carsData.map((car, idx) => {
+                                return (
+                                    <Col key={idx}>
+                                        <CarCard car={car}/>
+                                    </Col>
+                                );
+                            })}
+                        </Row>
+                    </>
                 )}
             </Container>
         </>

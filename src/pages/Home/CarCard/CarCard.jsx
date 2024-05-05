@@ -4,24 +4,28 @@ import Button from "react-bootstrap/Button";
 import CarFeatures from "./CarFeatures.jsx";
 import {useNavigate} from "react-router-dom";
 import {AppRoutes} from "../../../utils/appRoutes.js";
+import {useDispatch} from "react-redux";
+import {setSelectedCar} from "../../../redux/reducers/carReducer.js";
 
-export default function CarCard({props}) {
+export default function CarCard({car}) {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     return (
         <>
             <Card className={"car-card"}>
-                <Card.Img variant="top" height={"200px"} src={props.image ?? placeholderPhoto} fluid rounded/>
+                <Card.Img variant="top" height={"200px"} src={car.image ?? placeholderPhoto} fluid rounded/>
                 <Card.Body>
                     <Card.Title
-                        className={"mb-2"}>{`${props.model} / ${props.type}`}</Card.Title>
-                    <Card.Subtitle className={"mb-3"}>{`Rp. ${props.rentPerDay} / hari`}</Card.Subtitle>
-                    <CarFeatures capacity={props.capacity} transmission={props.transmission}
-                                 year={props.year}/>
+                        className={"mb-2"}>{`${car.model} / ${car.type}`}</Card.Title>
+                    <Card.Subtitle className={"mb-3"}>{`Rp. ${car.rentPerDay} / hari`}</Card.Subtitle>
+                    <CarFeatures capacity={car.capacity} transmission={car.transmission}
+                                 year={car.year}/>
                 </Card.Body>
                 <Card.Footer>
                     <Button className={"w-100"} variant={"outline-primary"} onClick={(_) => {
-                        navigate(AppRoutes.CAR_DETAILS)
+                        dispatch(setSelectedCar(car));
+                        navigate(AppRoutes.CAR_DETAILS);
                     }}>
                         View Full Details
                     </Button>
