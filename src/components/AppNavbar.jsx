@@ -58,17 +58,6 @@ export default function AppNavbar() {
                                 </>
                             )}
                         </Nav>
-                        {(user && location.pathname === AppRoutes.HOME) && (
-                            <Form className={"d-flex justify-content-end"}>
-                                <Form.Control
-                                    type="search"
-                                    placeholder="Search"
-                                    className="me-2"
-                                    aria-label="Search"
-                                />
-                                <Button variant="outline-primary">Search</Button>
-                            </Form>
-                        )}
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
             </Container>

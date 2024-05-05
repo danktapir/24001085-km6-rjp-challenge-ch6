@@ -5,6 +5,8 @@ import {useEffect, useState} from "react";
 import {fetchAllCars} from "../../redux/actions/carAction.js";
 import CarCard from "./CarCard/CarCard.jsx";
 import {toast} from "react-toastify";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function HomePage() {
     const carsData = useSelector((state) => state.car.carsData);
@@ -25,6 +27,20 @@ export default function HomePage() {
     return (
         <>
             <Container>
+                <Form>
+                    <Row className={"g-2"}>
+                        <Col md={4} lg={4}>
+                            <Form.Control
+                                type="search"
+                                placeholder="Search by car's model name..."
+                                aria-label="Search"
+                            />
+                        </Col>
+                        <Col>
+                            <Button variant="outline-primary">Search</Button>
+                        </Col>
+                    </Row>
+                </Form>
                 {isLoading ? (
                     <h2>Loading...</h2>
                 ) : (
