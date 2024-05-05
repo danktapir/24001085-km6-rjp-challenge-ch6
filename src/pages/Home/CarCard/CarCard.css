@@ -1,0 +1,9 @@
+.car-card {
+    height: 100%; !important;
+}
+
+.car-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

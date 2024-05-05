@@ -28,7 +28,7 @@ export default function AppNavbar() {
         <Navbar key={expand} expand={expand} className="bg-body-secondary mb-3">
             <Container>
                 <Navbar.Brand as={Link} to={AppRoutes.HOME}>
-                    <Image className={"me-3"} src={"../../public/vite.svg"} alt={"Vite Logo"}/>
+                    <Image className={"me-3"} src={"/vite.svg"} alt={"Vite Logo"}/>
                     Car Dashboard
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
@@ -38,7 +38,7 @@ export default function AppNavbar() {
                     placement="end"
                 >
                     <Offcanvas.Header closeButton>
-                        <Image src={"../../public/vite.svg"} alt={"Vite Logo"} className={"me-3"}/>
+                        <Image src={"/vite.svg"} alt={"Vite Logo"} className={"me-3"}/>
                         <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                             Car Dashboard
                         </Offcanvas.Title>
@@ -47,6 +47,7 @@ export default function AppNavbar() {
                         <Nav className="justify-content-end flex-grow-1 me-3">
                             {user ? (
                                 <>
+                                    <Nav.Link as={Link} to={AppRoutes.HOME}>Home</Nav.Link>
                                     <Nav.Link as={Link} to={AppRoutes.PROFILE}>My Profile</Nav.Link>
                                     <Nav.Link as={Link} onClick={(_) => dispatch(logout(navigate))}>Logout</Nav.Link>
                                 </>
@@ -56,17 +57,16 @@ export default function AppNavbar() {
                                     <Nav.Link as={Link} to={AppRoutes.REGISTER}>Register</Nav.Link>
                                 </>
                             )}
-
                         </Nav>
-                        {(location.pathname === AppRoutes.HOME) && (
-                            <Form className="d-flex">
+                        {(user && location.pathname === AppRoutes.HOME) && (
+                            <Form className={"d-flex justify-content-end"}>
                                 <Form.Control
                                     type="search"
                                     placeholder="Search"
                                     className="me-2"
                                     aria-label="Search"
                                 />
-                                <Button variant="outline-success">Search</Button>
+                                <Button variant="outline-primary">Search</Button>
                             </Form>
                         )}
                     </Offcanvas.Body>
