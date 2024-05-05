@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getUserProfile} from "../redux/actions/userAction.js";
+import {getUserData} from "../redux/actions/userAction.js";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Offcanvas from 'react-bootstrap/Offcanvas';
@@ -19,7 +19,7 @@ export default function AppNavbar() {
     const location = useLocation();
 
     useEffect(() => {
-        dispatch(getUserProfile());
+        dispatch(getUserData());
     }, [dispatch]);
 
     const expand = "lg";

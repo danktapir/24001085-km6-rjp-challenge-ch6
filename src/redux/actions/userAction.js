@@ -1,8 +1,9 @@
 import axios from "axios";
 import {toast} from "react-toastify";
 import {setUser} from "../reducers/authReducer.js";
+import {AppRoutes} from "../../utils/appRoutes.js";
 
-export const getUserProfile = () => async (dispatch, getState) => {
+export const getUserData = () => async (dispatch, getState) => {
     const state = getState();
     const token = state.auth.token;
 
@@ -13,7 +14,7 @@ export const getUserProfile = () => async (dispatch, getState) => {
     const config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: `${import.meta.env.VITE_BACKEND_BASE_API}/users/profile`,
+        url: `${AppRoutes.BACKEND_BASE_API}/users/profile`,
         headers: {
             Authorization: `Bearer ${token}`
         }
