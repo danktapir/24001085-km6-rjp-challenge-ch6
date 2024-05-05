@@ -5,10 +5,10 @@ import CarFeatures from "./CarFeatures.jsx";
 import {useNavigate} from "react-router-dom";
 import {AppRoutes} from "../../../utils/appRoutes.js";
 import {useDispatch, useSelector} from "react-redux";
-import {setSelectedCar} from "../../../redux/reducers/carReducer.js";
 import {Privileges} from "../../../utils/privileges.js";
 import {useState} from "react";
 import DeleteCarModal from "../DeleteCarModal.jsx";
+import {updateSelectedCar} from "../../../redux/actions/carAction.js";
 
 export default function CarCard({car}) {
     const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function CarCard({car}) {
                 </Card.Body>
                 <Card.Footer>
                     <Button className={"w-100"} variant={"outline-primary"} onClick={(_) => {
-                        dispatch(setSelectedCar(car));
+                        dispatch(updateSelectedCar(car));
                         navigate(AppRoutes.CAR_DETAILS);
                     }}>
                         View Full Details

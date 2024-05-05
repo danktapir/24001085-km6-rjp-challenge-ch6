@@ -8,13 +8,13 @@ export default function CarDetails() {
     const selectedCar = useSelector(state => state.car.selectedCar);
 
     const getProperTransmissionName = () => {
-        return selectedCar.transmission.charAt(0).toUpperCase() + selectedCar.transmission.substring(1);
+        return selectedCar?.transmission.charAt(0).toUpperCase() + selectedCar.transmission.substring(1);
     }
 
     return (
         <>
             <Form>
-                <Image src={selectedCar?.image ?? placeholderPhoto} fluid rounded/>
+                <Image id={"car-img"} src={selectedCar?.image ?? placeholderPhoto} fluid rounded/>
                 <Form.Group className="mt-2">
                     <Form.Label>Model</Form.Label>
                     <Form.Control placeholder={selectedCar?.model} disabled/>

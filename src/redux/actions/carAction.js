@@ -1,6 +1,6 @@
 import {toast} from "react-toastify";
 import axios from "axios";
-import {setCars} from "../reducers/carReducer.js";
+import {setCars, setSelectedCar} from "../reducers/carReducer.js";
 
 export const fetchAllCars = () => async (dispatch) => {
     const token = localStorage.getItem('token');
@@ -45,4 +45,8 @@ export const deleteCar = (carId) => async (dispatch, getState) => {
     } catch (err) {
         toast.error(err?.response?.data?.message);
     }
+}
+
+export const updateSelectedCar = (car) => (dispatch) => {
+    dispatch(setSelectedCar(car));
 }

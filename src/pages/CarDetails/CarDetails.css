@@ -3,3 +3,9 @@
     max-height: 150px;
     text-align: justify;
 }
+
+#car-img {
+    height: 200px !important;
+    width: 100%;
+    object-fit: fill;
+}
