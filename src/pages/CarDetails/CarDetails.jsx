@@ -1,7 +1,8 @@
-import {Col, Image, Row} from "react-bootstrap";
+import {Image} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import {useSelector} from "react-redux";
 import placeholderPhoto from "../../assets/placeholder_img.svg";
+import "./CarDetails.css";
 
 export default function CarDetails() {
     const selectedCar = useSelector(state => state.car.selectedCar);
@@ -47,6 +48,16 @@ export default function CarDetails() {
                 <Form.Group className="mt-2">
                     <Form.Label>Rent Per Day</Form.Label>
                     <Form.Control placeholder={selectedCar?.rentPerDay} disabled/>
+                </Form.Group>
+
+                <Form.Group className="mt-2">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control
+                        id={"description-field"}
+                        as="textarea"
+                        placeholder={selectedCar?.description ?? "No description provided for this car."}
+                        disabled
+                    />
                 </Form.Group>
             </Form>
         </>
