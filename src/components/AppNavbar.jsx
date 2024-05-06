@@ -1,12 +1,10 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserData} from "../redux/actions/userAction.js";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import {Image} from "react-bootstrap";
 import {AppRoutes} from "../utils/appRoutes.js";
@@ -16,11 +14,10 @@ export default function AppNavbar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.user);
-    const location = useLocation();
 
     useEffect(() => {
         dispatch(getUserData());
-    }, [dispatch]);
+    }, [dispatch, user]);
 
     const expand = "lg";
 
@@ -54,7 +51,7 @@ export default function AppNavbar() {
                             ) : (
                                 <>
                                     <Nav.Link as={Link} to={AppRoutes.LOGIN}>Login</Nav.Link>
-                                    <Nav.Link as={Link} to={AppRoutes.REGISTER}>Register</Nav.Link>
+                                    <Nav.Link as={Link} to={AppRoutes.REGISTER_MEMBER}>Register</Nav.Link>
                                 </>
                             )}
                         </Nav>

@@ -10,10 +10,9 @@ import {useState} from "react";
 import DeleteCarModal from "../DeleteCarModal.jsx";
 import {updateSelectedCar} from "../../../redux/actions/carAction.js";
 
-export default function CarCard({car}) {
+export default function CarCard({user, car}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.auth.user);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

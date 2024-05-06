@@ -8,11 +8,12 @@ import Unprotected from "./components/Unprotected.jsx";
 import {Provider} from "react-redux";
 import store from "./redux/store.js";
 import LoginPage from "./pages/Login/LoginPage.jsx";
-import RegisterPage from "./pages/Register/RegisterPage.jsx";
+import RegisterMemberPage from "./pages/Register/RegisterMemberPage.jsx";
 import HomePage from "./pages/Home/HomePage.jsx";
 import Protected from "./components/Protected.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
 import CarDetailsPage from "./pages/CarDetails/CarDetailsPage.jsx";
+import RegisterAdminPage from "./pages/Register/RegisterAdminPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -38,13 +39,24 @@ const router = createBrowserRouter([
         )
     },
     {
-        path: AppRoutes.REGISTER,
+        path: AppRoutes.REGISTER_MEMBER,
         element: (
             <>
                 <Unprotected>
                     <AppNavbar/>
-                    <RegisterPage/>
+                    <RegisterMemberPage/>
                 </Unprotected>
+            </>
+        )
+    },
+    {
+        path: AppRoutes.REGISTER_ADMIN,
+        element: (
+            <>
+                <Protected>
+                    <AppNavbar/>
+                    <RegisterAdminPage/>
+                </Protected>
             </>
         )
     },
