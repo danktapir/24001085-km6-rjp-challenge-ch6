@@ -18,7 +18,10 @@ export default function PrivilegedActionsDropdown({user}) {
                         }}>Register Admin</Dropdown.Item>
                     </>
                 )}
-                <Dropdown.Item>Add Car</Dropdown.Item>
+                <Dropdown.Item onClick={(event) => {
+                    event.preventDefault();
+                    navigate(AppRoutes.ADD_CAR);
+                }}>Add Car</Dropdown.Item>
             </DropdownButton>
         </>
     );

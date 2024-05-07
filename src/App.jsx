@@ -14,6 +14,7 @@ import Protected from "./components/Protected.jsx";
 import ProfilePage from "./pages/Profile/ProfilePage.jsx";
 import CarDetailsPage from "./pages/CarDetails/CarDetailsPage.jsx";
 import RegisterAdminPage from "./pages/Register/RegisterAdminPage.jsx";
+import AddCarPage from "./pages/AddCar/AddCarPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -78,6 +79,17 @@ const router = createBrowserRouter([
                 <Protected>
                     <AppNavbar/>
                     <CarDetailsPage/>
+                </Protected>
+            </>
+        )
+    },
+    {
+        path: AppRoutes.ADD_CAR,
+        element: (
+            <>
+                <Protected>
+                    <AppNavbar/>
+                    <AddCarPage/>
                 </Protected>
             </>
         )
