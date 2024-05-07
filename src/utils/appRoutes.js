@@ -6,5 +6,6 @@ export const AppRoutes = {
     PROFILE: "/profile",
     CAR_DETAILS: "/cars/details",
     ADD_CAR: "/cars/add",
+    EDIT_CAR: "/cars/edit",
     BACKEND_BASE_API: `${import.meta.env.VITE_BACKEND_BASE_API}`,
 };
