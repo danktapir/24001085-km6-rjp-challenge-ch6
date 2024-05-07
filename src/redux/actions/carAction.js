@@ -1,6 +1,6 @@
 import {toast} from "react-toastify";
 import axios from "axios";
-import {setCars, setSelectedCar, addCars} from "../reducers/carReducer.js";
+import {addCars, setCars, setSelectedCar} from "../reducers/carReducer.js";
 import {AppRoutes} from "../../utils/appRoutes.js";
 
 export const fetchAllCars = () => async (dispatch) => {
@@ -59,17 +59,11 @@ export const addCar = (navigate, payload) => async (dispatch, getState) => {
     if (!token) {
         return;
     }
-    if (!payload.image) {
-        delete payload.image;
-    }
-    if (!payload.description) {
-        delete payload.description;
-    }
 
-    const formData = new FormData();
+    const formData = validateInputFields(payload);
 
-    for (let field in payload) {
-        formData.append(field, payload[field]);
+    if (!formData) {
+        return;
     }
 
     const config = {
@@ -79,7 +73,7 @@ export const addCar = (navigate, payload) => async (dispatch, getState) => {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
-        data : formData
+        data: formData
     };
 
     try {
@@ -92,4 +86,24 @@ export const addCar = (navigate, payload) => async (dispatch, getState) => {
     } catch (err) {
         toast.error(err?.response?.data?.message);
     }
+}
+
+const validateInputFields = (payload) => {
+    if (!payload.image) {
+        delete payload.image;
+    }
+    if (!payload.description) {
+        delete payload.description;
+    }
+
+    const formData = new FormData();
+
+    for (let field in payload) {
+        if (!payload[field]) {
+            toast.error(`Field ${field} must be filled!`);
+            return null;
+        }
+        formData.append(field, payload[field]);
+    }
+    return formData;
 }

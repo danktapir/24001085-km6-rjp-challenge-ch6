@@ -9,11 +9,11 @@ import {useNavigate} from "react-router-dom";
 import {CarTransmissions} from "../../utils/carTransmissions.js";
 
 export default function AddCarForm() {
-    const [model, setModel] = useState(null);
-    const [type, setType] = useState(null);
+    const [model, setModel] = useState();
+    const [type, setType] = useState();
     const [capacity, setCapacity] = useState(1);
-    const [plate, setPlate] = useState(null);
-    const [year, setYear] = useState(null);
+    const [plate, setPlate] = useState();
+    const [year, setYear] = useState(0);
     const [rentPerDay, setRentPerDay] = useState(0);
     const [transmission, setTransmission] = useState(CarTransmissions.MANUAL);
     const [image, setImage] = useState();
@@ -71,7 +71,7 @@ export default function AddCarForm() {
                     <Col lg={6}>
                         <Form.Group className="mt-2">
                             <Form.Label>Capacity</Form.Label>
-                            <Form.Control type={"number"} placeholder={"e.g. 4"} min={1}
+                            <Form.Control type={"number"} placeholder={"e.g. 4"}
                                           onChange={(event) => setCapacity(parseInt(event.target.value))}/>
                         </Form.Group>
                     </Col>
