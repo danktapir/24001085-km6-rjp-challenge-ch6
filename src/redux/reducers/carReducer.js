@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const carSlice = createSlice({
     name: "car",
-    initialState : {
+    initialState: {
         carsData: [],
         selectedCar: null,
     },
@@ -10,11 +10,14 @@ const carSlice = createSlice({
         setCars: (state, action) => {
             state.carsData = action.payload;
         },
+        addCars: (state, action) => {
+            state.carsData.push(action.payload);
+        },
         setSelectedCar: (state, action) => {
             state.selectedCar = action.payload;
         }
     },
 });
 
-export const {setCars, setSelectedCar, deleteCar} = carSlice.actions;
+export const {setCars, addCars, setSelectedCar, deleteCar} = carSlice.actions;
 export default carSlice.reducer;

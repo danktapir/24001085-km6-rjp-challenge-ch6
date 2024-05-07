@@ -14,7 +14,7 @@ export default function CarDetails() {
     return (
         <>
             <Form>
-                <Image id={"car-img"} src={selectedCar?.image ?? placeholderPhoto} fluid rounded/>
+                <Image id={"car-img"} src={(selectedCar?.image) ? selectedCar?.image : placeholderPhoto} fluid rounded/>
                 <Form.Group className="mt-2">
                     <Form.Label>Model</Form.Label>
                     <Form.Control placeholder={selectedCar?.model} disabled/>
@@ -55,7 +55,7 @@ export default function CarDetails() {
                     <Form.Control
                         id={"description-field"}
                         as="textarea"
-                        placeholder={selectedCar?.description ?? "No description provided for this car."}
+                        placeholder={(selectedCar?.description) ? selectedCar?.description : "No description provided for this car."}
                         disabled
                     />
                 </Form.Group>
