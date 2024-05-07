@@ -9,14 +9,14 @@ import {useNavigate} from "react-router-dom";
 import {CarTransmissions} from "../../utils/carTransmissions.js";
 
 export default function AddCarForm() {
-    const [model, setModel] = useState();
-    const [type, setType] = useState();
+    const [model, setModel] = useState(null);
+    const [type, setType] = useState(null);
     const [capacity, setCapacity] = useState(1);
-    const [plate, setPlate] = useState();
+    const [plate, setPlate] = useState(null);
     const [year, setYear] = useState(0);
     const [rentPerDay, setRentPerDay] = useState(0);
     const [transmission, setTransmission] = useState(CarTransmissions.MANUAL);
-    const [image, setImage] = useState();
+    const [image, setImage] = useState(null);
     const [available, setAvailable] = useState(true);
     const [description, setDescription] = useState();
     const [isLoading, setIsLoading] = useState(false);

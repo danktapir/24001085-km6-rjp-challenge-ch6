@@ -60,7 +60,13 @@ export const addCar = (navigate, payload) => async (dispatch, getState) => {
         return;
     }
 
-    const formData = validateInputFields(payload);
+    const formData = new FormData();
+
+    for (let field in payload) {
+        if (payload[field]) {
+            formData.append(field, payload[field]);
+        }
+    }
 
     if (!formData) {
         return;
@@ -86,24 +92,4 @@ export const addCar = (navigate, payload) => async (dispatch, getState) => {
     } catch (err) {
         toast.error(err?.response?.data?.message);
     }
-}
-
-const validateInputFields = (payload) => {
-    if (!payload.image) {
-        delete payload.image;
-    }
-    if (!payload.description) {
-        delete payload.description;
-    }
-
-    const formData = new FormData();
-
-    for (let field in payload) {
-        if (!payload[field]) {
-            toast.error(`Field ${field} must be filled!`);
-            return null;
-        }
-        formData.append(field, payload[field]);
-    }
-    return formData;
 }

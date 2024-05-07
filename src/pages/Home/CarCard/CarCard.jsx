@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import CarFeatures from "./CarFeatures.jsx";
 import {useNavigate} from "react-router-dom";
 import {AppRoutes} from "../../../utils/appRoutes.js";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {Privileges} from "../../../utils/privileges.js";
 import {useState} from "react";
 import DeleteCarModal from "../DeleteCarModal.jsx";
@@ -20,13 +20,13 @@ export default function CarCard({user, car}) {
     return (
         <>
             <Card className={"car-card"}>
-                <Card.Img variant="top" height={"200px"} src={car.image ?? placeholderPhoto} fluid rounded/>
+                <Card.Img variant="top" height={"200px"} src={car?.image ?? placeholderPhoto} fluid rounded/>
                 <Card.Body>
                     <Card.Title
-                        className={"mb-2"}>{`${car.model} / ${car.type}`}</Card.Title>
-                    <Card.Subtitle className={"mb-3"}>{`Rp. ${car.rentPerDay} / hari`}</Card.Subtitle>
-                    <CarFeatures capacity={car.capacity} transmission={car.transmission}
-                                 year={car.year}/>
+                        className={"mb-2"}>{`${car?.model} / ${car?.type}`}</Card.Title>
+                    <Card.Subtitle className={"mb-3"}>{`Rp. ${car?.rentPerDay} / hari`}</Card.Subtitle>
+                    <CarFeatures capacity={car?.capacity} transmission={car?.transmission}
+                                 year={car?.year}/>
                 </Card.Body>
                 <Card.Footer>
                     <Button className={"w-100"} variant={"outline-primary"} onClick={(_) => {
@@ -43,7 +43,7 @@ export default function CarCard({user, car}) {
                             <Button className={"w-100 mt-2"} variant={"outline-danger"} onClick={handleShow}>
                                 Delete
                             </Button>
-                            <DeleteCarModal carId={car.id} isShowing={show} handleClose={handleClose}
+                            <DeleteCarModal carId={car?.id} isShowing={show} handleClose={handleClose}
                                             handleShow={handleShow}/>
                         </>
                     )}
