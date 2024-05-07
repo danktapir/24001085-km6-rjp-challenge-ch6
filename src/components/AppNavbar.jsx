@@ -13,7 +13,7 @@ import {logout} from "../redux/actions/authAction.js";
 export default function AppNavbar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const user = useSelector((state) => state.auth.user);
+    const {token, user} = useSelector((state) => state.auth);
 
     useEffect(() => {
         dispatch(getUserData());
@@ -42,11 +42,14 @@ export default function AppNavbar() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 me-3">
-                            {user ? (
+                            {token ? (
                                 <>
                                     <Nav.Link as={Link} to={AppRoutes.HOME}>Home</Nav.Link>
                                     <Nav.Link as={Link} to={AppRoutes.PROFILE}>My Profile</Nav.Link>
-                                    <Nav.Link as={Link} onClick={(_) => dispatch(logout(navigate))}>Logout</Nav.Link>
+                                    <Nav.Link as={Link} onClick={(event) => {
+                                        event.preventDefault();
+                                        dispatch(logout(navigate));
+                                    }}>Logout</Nav.Link>
                                 </>
                             ) : (
                                 <>

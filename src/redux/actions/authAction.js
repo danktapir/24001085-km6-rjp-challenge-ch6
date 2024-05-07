@@ -37,7 +37,7 @@ const resetAuthState = (dispatch) => {
 }
 
 export const register = (navigate, payload) => async () => {
-    const {email, password, confirmPassword, image, privilege} = payload;
+    const {email, password, confirmPassword, image} = payload;
 
     if (password !== confirmPassword) {
         toast.error("Passwords don't match");
@@ -48,12 +48,26 @@ export const register = (navigate, payload) => async () => {
 
     formData.append("email", email);
     formData.append("password", password);
-    formData.append("privilege", privilege);
 
     if (image) {
         formData.append("image", image);
     }
+
     const token = localStorage.getItem("token");
+    let privilege;
+
+    /**
+     * kalo ada token, berarti pengen register admin
+     * kalo ga ada, pengen register member
+     */
+    if (token) {
+        formData.append("privilege", Privileges.ADMIN);
+        privilege = Privileges.ADMIN;
+    } else {
+        formData.append("privilege", Privileges.MEMBER);
+        privilege = Privileges.MEMBER;
+    }
+
     const config = {
         method: 'post',
         maxBodyLength: Infinity,

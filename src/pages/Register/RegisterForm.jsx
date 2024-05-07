@@ -6,7 +6,7 @@ import {register} from "../../redux/actions/authAction.js";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-export default function RegisterForm() {
+export default function RegisterForm({props}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -45,15 +45,6 @@ export default function RegisterForm() {
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control type="password" placeholder="Confirm Password"
                               onChange={(event) => setConfirmPassword(event.target.value)}/>
-            </Form.Group>
-
-            <Form.Group className="mb-3">
-                <Form.Label>Privilege</Form.Label>
-                <Form.Select aria-label="Default select example" defaultValue={privilege}
-                             onChange={(event) => setPrivilege(event.target.value)}>
-                    <option value={Privileges.MEMBER}>Member</option>
-                    <option value={Privileges.ADMIN}>Admin</option>
-                </Form.Select>
             </Form.Group>
 
             <Form.Group controlId="photoInput" className="mb-3">

@@ -3,6 +3,6 @@ import RegisterForm from "./RegisterForm.jsx";
 
 export default function RegisterMemberPage() {
     return (
-        <BasePage MainComponent={RegisterForm} header={"Register"}/>
+        <BasePage MainComponent={RegisterForm} header={"Register Member"}/>
     );
 }

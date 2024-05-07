@@ -7,6 +7,7 @@ import CarCard from "./CarCard/CarCard.jsx";
 import {toast} from "react-toastify";
 import PrivilegedActionsDropdown from "./PrivilegedActionsDropdown.jsx";
 import {Privileges} from "../../utils/privileges.js";
+import {getUserData} from "../../redux/actions/userAction.js";
 
 export default function HomePage() {
     const carsData = useSelector((state) => state.car.carsData);
@@ -25,6 +26,10 @@ export default function HomePage() {
         });
     }, [dispatch]);
 
+    useEffect(() => {
+        dispatch(getUserData());
+    }, [dispatch]);
+
     return (
         <>
             <Container>
@@ -32,10 +37,10 @@ export default function HomePage() {
                     <h2>Loading...</h2>
                 ) : (
                     <>
-                        {(user.privilege === Privileges.ADMIN || user.privilege === Privileges.SUPERADMIN) && (
-                            <PrivilegedActionsDropdown/>
+                        {(user?.privilege === Privileges.ADMIN || user?.privilege === Privileges.SUPERADMIN) && (
+                            <PrivilegedActionsDropdown user={user}/>
                         )}
-                        {(carsData.length > 0) ? (
+                        {(carsData?.length > 0) ? (
                             <>
                                 <Row className={"mt-4 g-4"} md={3} lg={4}>
                                     {carsData.map((car, idx) => {
@@ -52,7 +57,6 @@ export default function HomePage() {
                                 <h2 className={"mt-5"}>No cars found.</h2>
                             </>
                         )}
-
                     </>
                 )}
             </Container>

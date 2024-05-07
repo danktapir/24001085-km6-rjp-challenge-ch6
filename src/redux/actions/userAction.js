@@ -1,6 +1,6 @@
 import axios from "axios";
 import {toast} from "react-toastify";
-import {setUser} from "../reducers/authReducer.js";
+import {setToken, setUser} from "../reducers/authReducer.js";
 import {AppRoutes} from "../../utils/appRoutes.js";
 
 export const getUserData = () => async (dispatch, getState) => {
@@ -26,6 +26,7 @@ export const getUserData = () => async (dispatch, getState) => {
         dispatch(setUser(data));
     } catch (err) {
         dispatch(setUser(null));
+        dispatch(setToken(null));
         console.log("user profile error");
         toast.error(err?.response?.data?.message);
     }

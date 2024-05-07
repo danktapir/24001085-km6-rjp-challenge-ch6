@@ -8,7 +8,7 @@ export default function CarDetails() {
     const selectedCar = useSelector(state => state.car.selectedCar);
 
     const getProperTransmissionName = () => {
-        return selectedCar?.transmission.charAt(0).toUpperCase() + selectedCar.transmission.substring(1);
+        return selectedCar?.transmission.charAt(0).toUpperCase() + selectedCar?.transmission.substring(1);
     }
 
     return (

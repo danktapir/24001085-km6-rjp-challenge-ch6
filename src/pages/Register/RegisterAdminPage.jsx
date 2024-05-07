@@ -1,7 +1,10 @@
+import BasePage from "../../components/BasePage.jsx";
+import RegisterForm from "./RegisterForm.jsx";
+
 export default function RegisterAdminPage() {
     return (
         <>
-            <h2>Register Admin Page</h2>
+            <BasePage MainComponent={RegisterForm} header={"Register Admin"}/>
         </>
     );
 }
