@@ -17,7 +17,7 @@ export default function AppNavbar() {
 
     useEffect(() => {
         dispatch(getUserData());
-    }, [dispatch, user]);
+    }, [dispatch, token]);
 
     const expand = "lg";
 
