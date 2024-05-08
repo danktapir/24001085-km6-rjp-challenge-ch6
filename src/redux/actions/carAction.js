@@ -1,6 +1,6 @@
 import {toast} from "react-toastify";
 import axios from "axios";
-import {addCars, setCars, setSelectedCar} from "../reducers/carReducer.js";
+import {setCars, setSelectedCar} from "../reducers/carReducer.js";
 import {AppRoutes} from "../../utils/appRoutes.js";
 
 export const fetchAllCars = () => async (dispatch) => {
@@ -103,6 +103,14 @@ export const updateCar = (navigate, payload) => async (dispatch, getState) => {
     const carId = updatedCar.id;
     console.log(updatedCar);
 
+    /**
+     * kalo tipe imagenya string (udah di upload ke cloudinary),
+     * berarti imagenya ga di update
+     */
+    if (typeof updatedCar.image === "string") {
+        delete updatedCar.image;
+    }
+
     const config = {
         method: 'patch',
         maxBodyLength: Infinity,
@@ -110,7 +118,7 @@ export const updateCar = (navigate, payload) => async (dispatch, getState) => {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
-        data : updatedCar
+        data: updatedCar
     };
 
     try {

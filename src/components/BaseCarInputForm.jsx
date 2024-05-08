@@ -26,7 +26,7 @@ export default function BaseCarInputForm({car, submitHandler}) {
         event.preventDefault();
 
         setIsLoading(true);
-        await dispatch(submitHandler(navigate, {
+        let payload = {
             model,
             type,
             capacity,
@@ -37,7 +37,11 @@ export default function BaseCarInputForm({car, submitHandler}) {
             image,
             available,
             description
-        }));
+        };
+        if (car.id) {
+            payload = {...payload, id: car.id}
+        }
+        await dispatch(submitHandler(navigate, payload));
         setIsLoading(false);
     }
 
