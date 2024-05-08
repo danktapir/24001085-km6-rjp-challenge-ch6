@@ -5,5 +5,9 @@ export const Privileges = {
 };
 
 export const getProperPrivilegeName = (privilege) => {
-    return privilege.charAt(0).toUpperCase() + privilege.substring(1);
+    if (privilege === Privileges.SUPERADMIN) {
+        return "Super Admin";
+    } else {
+        return privilege?.charAt(0).toUpperCase() + privilege?.substring(1);
+    }
 }

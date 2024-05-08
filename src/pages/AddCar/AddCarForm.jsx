@@ -1,11 +1,11 @@
 import "./AddCarForm.css";
-import BaseCarForm from "../../components/BaseCarForm.jsx";
+import BaseCarInputForm from "../../components/BaseCarInputForm.jsx";
 import {addCar} from "../../redux/actions/carAction.js";
 
 export default function AddCarForm() {
     return (
         <>
-            <BaseCarForm submitHandler={addCar}/>
+            <BaseCarInputForm submitHandler={addCar}/>
         </>
     );
 }

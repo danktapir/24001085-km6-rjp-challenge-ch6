@@ -4,5 +4,5 @@ export const CarTransmissions = {
 };
 
 export const getProperTransmissionName = (transmission) => {
-    return transmission.charAt(0).toUpperCase() + transmission.substring(1);
+    return transmission?.charAt(0).toUpperCase() + transmission?.substring(1);
 }

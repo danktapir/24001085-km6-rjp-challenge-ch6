@@ -1,4 +1,4 @@
-import BaseCarForm from "../../components/BaseCarForm.jsx";
+import BaseCarInputForm from "../../components/BaseCarInputForm.jsx";
 import {useSelector} from "react-redux";
 
 export default function EditCarForm() {
@@ -6,7 +6,7 @@ export default function EditCarForm() {
 
     return (
         <>
-            <BaseCarForm car={selectedCar}/>
+            <BaseCarInputForm car={selectedCar}/>
         </>
     );
 }

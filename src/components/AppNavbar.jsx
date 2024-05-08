@@ -13,7 +13,7 @@ import {logout} from "../redux/actions/authAction.js";
 export default function AppNavbar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {token, user} = useSelector((state) => state.auth);
+    const token = useSelector((state) => state.auth.token);
 
     useEffect(() => {
         dispatch(getUserData());

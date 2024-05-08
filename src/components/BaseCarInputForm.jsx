@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import {Col, Row} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
-export default function BaseCarForm({car, submitHandler}) {
+export default function BaseCarInputForm({car, submitHandler}) {
     const [model, setModel] = useState(car?.model ?? null);
     const [type, setType] = useState(car?.type ?? null);
     const [capacity, setCapacity] = useState(car?.capacity ?? 1);

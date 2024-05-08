@@ -1,5 +1,5 @@
 import {Card} from "react-bootstrap";
-import placeholderPhoto from "../../../assets/placeholder_img.svg";
+import placeholderImage from "../../../assets/placeholder_img.svg";
 import Button from "react-bootstrap/Button";
 import CarFeatures from "./CarFeatures.jsx";
 import {useNavigate} from "react-router-dom";
@@ -20,7 +20,7 @@ export default function CarCard({user, car}) {
     return (
         <>
             <Card className={"car-card"}>
-                <Card.Img variant="top" height={"200px"} src={car?.image ?? placeholderPhoto} fluid rounded/>
+                <Card.Img variant="top" height={"200px"} src={car?.image ?? placeholderImage} fluid rounded/>
                 <Card.Body>
                     <Card.Title
                         className={"mb-2"}>{`${car?.model} / ${car?.type}`}</Card.Title>
