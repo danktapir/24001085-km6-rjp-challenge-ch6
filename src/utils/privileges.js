@@ -3,3 +3,7 @@ export const Privileges = {
     ADMIN: "admin",
     SUPERADMIN: "superadmin",
 };
+
+export const getProperPrivilegeName = (privilege) => {
+    return privilege.charAt(0).toUpperCase() + privilege.substring(1);
+}

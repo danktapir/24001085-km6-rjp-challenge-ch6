@@ -29,9 +29,9 @@ export default function CarCard({user, car}) {
                                  year={car?.year}/>
                 </Card.Body>
                 <Card.Footer>
-                    <Button className={"w-100"} variant={"outline-primary"} onClick={(_) => {
-                        dispatch(updateSelectedCar(car));
-                        navigate(AppRoutes.CAR_DETAILS);
+                    <Button className={"w-100"} variant={"outline-primary"} onClick={(event) => {
+                        event.preventDefault();
+                        navigate(AppRoutes.CAR_DETAILS, {state: car});
                     }}>
                         View Full Details
                     </Button>

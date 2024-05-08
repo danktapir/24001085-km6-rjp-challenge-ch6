@@ -3,6 +3,7 @@ import {Image} from "react-bootstrap";
 import placeholderPhoto from "../../assets/placeholder_img.svg";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
+import {getProperPrivilegeName} from "../../utils/privileges.js";
 
 export default function Profile() {
     const user = useSelector((state) => state.auth.user);
@@ -30,7 +31,7 @@ export default function Profile() {
 
                     <Form.Group className="mb-3">
                         <Form.Label>Privilege</Form.Label>
-                        <Form.Control disabled placeholder={user?.privilege}/>
+                        <Form.Control disabled placeholder={getProperPrivilegeName(user?.privilege)}/>
                     </Form.Group>
                 </Form>
             )}
