@@ -13,7 +13,7 @@ export default function CarDetails() {
             <Form>
                 <Image id={"car-img"} src={selectedCar?.image ?? placeholderImage} fluid rounded/>
 
-                <Row className="mt-2">
+                <Row className="mt-3">
                     <Col lg={6}>
                         <Form.Group>
                             <Form.Label>Model</Form.Label>

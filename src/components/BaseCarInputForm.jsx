@@ -48,14 +48,14 @@ export default function BaseCarInputForm({car, submitHandler}) {
                     <Col lg={6}>
                         <Form.Group className="mt-2">
                             <Form.Label>Model</Form.Label>
-                            <Form.Control type={"text"} placeholder={"e.g. Navigator"}
+                            <Form.Control type={"text"} placeholder={"e.g. Navigator"} defaultValue={car?.model}
                                           onChange={(event) => setModel(event.target.value)}/>
                         </Form.Group>
                     </Col>
                     <Col lg={6}>
                         <Form.Group className="mt-2">
                             <Form.Label>Type</Form.Label>
-                            <Form.Control type={"text"} placeholder={"e.g. Minivan"}
+                            <Form.Control type={"text"} placeholder={"e.g. Minivan"} defaultValue={car?.type}
                                           onChange={(event) => setType(event.target.value)}/>
                         </Form.Group>
                     </Col>
@@ -65,14 +65,14 @@ export default function BaseCarInputForm({car, submitHandler}) {
                     <Col lg={6}>
                         <Form.Group className="mt-2">
                             <Form.Label>Capacity</Form.Label>
-                            <Form.Control type={"number"} placeholder={"e.g. 4"}
+                            <Form.Control type={"number"} placeholder={"e.g. 4"} defaultValue={car?.capacity}
                                           onChange={(event) => setCapacity(parseInt(event.target.value))}/>
                         </Form.Group>
                     </Col>
                     <Col lg={6}>
                         <Form.Group className="mt-2">
                             <Form.Label>Plate</Form.Label>
-                            <Form.Control type={"text"} placeholder={"e.g. ABC-1010"}
+                            <Form.Control type={"text"} placeholder={"e.g. ABC-1010"} defaultValue={car?.plate}
                                           onChange={(event) => setPlate(event.target.value)}/>
                         </Form.Group>
                     </Col>
@@ -82,14 +82,14 @@ export default function BaseCarInputForm({car, submitHandler}) {
                     <Col lg={6}>
                         <Form.Group className="mt-2">
                             <Form.Label>Year</Form.Label>
-                            <Form.Control type={"number"} placeholder={"e.g. 2010"}
+                            <Form.Control type={"number"} placeholder={"e.g. 2010"} defaultValue={car?.year}
                                           onChange={(event) => setYear(parseInt(event.target.value))}/>
                         </Form.Group>
                     </Col>
                     <Col lg={6}>
                         <Form.Group className="mt-2">
                             <Form.Label>Rent Per Day</Form.Label>
-                            <Form.Control type={"number"} placeholder={"e.g. 50000"}
+                            <Form.Control type={"number"} placeholder={"e.g. 50000"} defaultValue={car?.rentPerDay}
                                           onChange={(event) => setRentPerDay(parseInt(event.target.value))}/>
                         </Form.Group>
                     </Col>
@@ -97,8 +97,8 @@ export default function BaseCarInputForm({car, submitHandler}) {
 
                 <Form.Group className="mt-2">
                     <Form.Label>Transmission</Form.Label>
-                    <Form.Select aria-label="Default select example" defaultValue={transmission}
-                                 onSelect={(event) => setTransmission(event.target.value)}>
+                    <Form.Select aria-label="Default select example" defaultValue={car?.transmission ?? transmission}
+                                 onChange={(event) => setTransmission(event.target.value)}>
                         <option value={CarTransmissions.MANUAL}>Manual</option>
                         <option value={CarTransmissions.AUTOMATIC}>Automatic</option>
                     </Form.Select>
@@ -106,6 +106,9 @@ export default function BaseCarInputForm({car, submitHandler}) {
 
                 <Form.Group controlId="photoInput" className="mt-2">
                     <Form.Label>Photo</Form.Label>
+                    {/*
+                    ga bisa ngasih default value untuk input field type file :(
+                    */}
                     <Form.Control type="file" onChange={(event) => setImage(event.target.files[0])}/>
                 </Form.Group>
 
@@ -118,8 +121,12 @@ export default function BaseCarInputForm({car, submitHandler}) {
                         label="Available"
                         name="inlineRadioOptions"
                         id="inlineRadio1"
-                        defaultChecked
-                        onSelect={(_) => setAvailable(true)}
+                        value={"true"}
+                        defaultChecked={car?.available ?? true}
+                        onChange={(event) => {
+                            const parsedValue = Boolean(event.target.value);
+                            setAvailable(parsedValue);
+                        }}
                     />
                     <Form.Check
                         inline
@@ -127,7 +134,12 @@ export default function BaseCarInputForm({car, submitHandler}) {
                         label="Not Available"
                         name="inlineRadioOptions"
                         id="inlineRadio2"
-                        onSelect={(_) => setAvailable(false)}
+                        value={"false"}
+                        defaultValue={car?.available}
+                        onChange={(event) => {
+                            const parsedValue = Boolean(event.target.value);
+                            setAvailable(parsedValue);
+                        }}
                     />
                 </Form.Group>
 
@@ -137,6 +149,7 @@ export default function BaseCarInputForm({car, submitHandler}) {
                         id={"description-field"}
                         as="textarea"
                         placeholder={"e.g. Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
+                        defaultValue={car?.description}
                         onChange={(event) => setDescription(event.target.value)}
                     />
                 </Form.Group>

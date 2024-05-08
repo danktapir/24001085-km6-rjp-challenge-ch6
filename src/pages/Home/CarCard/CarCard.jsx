@@ -37,9 +37,9 @@ export default function CarCard({user, car}) {
                     </Button>
                     {(user.privilege === Privileges.ADMIN || user.privilege === Privileges.SUPERADMIN) && (
                         <>
-                            <Button className={"w-100 mt-2"} variant={"outline-success"} onClick={(_) => {
-                                dispatch(updateSelectedCar(car));
-                                navigate(AppRoutes.EDIT_CAR);
+                            <Button className={"w-100 mt-2"} variant={"outline-success"} onClick={(event) => {
+                                event.preventDefault();
+                                navigate(AppRoutes.EDIT_CAR, {state: car});
                             }}>
                                 Edit
                             </Button>
