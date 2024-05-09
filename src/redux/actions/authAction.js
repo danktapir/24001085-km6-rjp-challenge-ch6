@@ -22,7 +22,7 @@ export const login = (navigate, payload) => async (dispatch) => {
         dispatch(setToken(token));
         dispatch(setUser(user));
 
-        toast.success("Login successful");
+        toast.success("Logged in successfully");
         navigate(AppRoutes.HOME);
     } catch (error) {
         resetAuthState(dispatch);
@@ -35,7 +35,7 @@ const resetAuthState = (dispatch) => {
     dispatch(setUser(null));
 }
 
-export const register = (navigate, payload) => async () => {
+export const register = (navigate, payload) => async (getState) => {
     const {email, password, confirmPassword, image} = payload;
 
     if (password !== confirmPassword) {
@@ -52,7 +52,8 @@ export const register = (navigate, payload) => async () => {
         formData.append("image", image);
     }
 
-    const token = localStorage.getItem("token");
+    const state = getState();
+    const token = state.auth.token;
     let privilege;
 
     /**
@@ -79,7 +80,7 @@ export const register = (navigate, payload) => async () => {
 
     try {
         await axios.request(config);
-        toast.success("Register successful");
+        toast.success("Registered successfully");
         navigate(AppRoutes.LOGIN);
     } catch (err) {
         toast.error(err?.response?.data?.message);
@@ -89,6 +90,6 @@ export const register = (navigate, payload) => async () => {
 export const logout = (navigate) => (dispatch) => {
     resetAuthState(dispatch);
 
-    toast.success("Logout successful");
+    toast.success("Logged out successfully");
     navigate(AppRoutes.LOGIN);
 }

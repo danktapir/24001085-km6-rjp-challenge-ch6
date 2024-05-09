@@ -43,14 +43,10 @@ export const deleteCar = (carId) => async (dispatch, getState) => {
         const updatedCarsData = carsData.filter(car => car.id !== carId);
         dispatch(setCars(updatedCarsData));
 
-        toast.success("Deletion car successful");
+        toast.success("Deleted car successfully");
     } catch (err) {
         toast.error(err?.response?.data?.message);
     }
-}
-
-export const updateSelectedCar = (car) => (dispatch) => {
-    dispatch(setSelectedCar(car));
 }
 
 export const addCar = (navigate, payload) => async (dispatch, getState) => {
