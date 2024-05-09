@@ -9,6 +9,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import {Image} from "react-bootstrap";
 import {AppRoutes} from "../utils/appRoutes.js";
 import {logout} from "../redux/actions/authAction.js";
+import viteLogo from "/public/assets/vite.svg";
 
 export default function AppNavbar() {
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function AppNavbar() {
         <Navbar key={expand} expand={expand} className="bg-body-secondary mb-3">
             <Container>
                 <Navbar.Brand as={Link} to={AppRoutes.HOME}>
-                    <Image className={"me-3"} src={"/vite.svg"} alt={"Vite Logo"}/>
+                    <Image className={"me-3"} src={viteLogo} alt={"Vite Logo"}/>
                     Vite Cars
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
@@ -35,7 +36,7 @@ export default function AppNavbar() {
                     placement="end"
                 >
                     <Offcanvas.Header closeButton>
-                        <Image src={"/vite.svg"} alt={"Vite Logo"} className={"me-3"}/>
+                        <Image src={viteLogo} alt={"Vite Logo"} className={"me-3"}/>
                         <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                             Vite Cars
                         </Offcanvas.Title>

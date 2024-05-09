@@ -35,7 +35,7 @@ const resetAuthState = (dispatch) => {
     dispatch(setUser(null));
 }
 
-export const register = (navigate, payload) => async (getState) => {
+export const register = (navigate, payload) => async (_, getState) => {
     const {email, password, confirmPassword, image} = payload;
 
     if (password !== confirmPassword) {
