@@ -3,8 +3,9 @@ import {CarTransmissions} from "../utils/carTransmissions.js";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import Form from "react-bootstrap/Form";
-import {Col, Row} from "react-bootstrap";
+import {Col, Row, Spinner} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import ButtonWithLoadingSpinner from "./ButtonWithLoadingSpinner.jsx";
 
 export default function BaseCarInputForm({car, submitHandler}) {
     const [model, setModel] = useState(car?.model ?? null);
@@ -38,8 +39,8 @@ export default function BaseCarInputForm({car, submitHandler}) {
             available,
             description
         };
-        if (car.id) {
-            payload = {...payload, id: car.id}
+        if (car?.id) {
+            payload = {...payload, id: car?.id}
         }
         await dispatch(submitHandler(navigate, payload));
         setIsLoading(false);
@@ -158,10 +159,7 @@ export default function BaseCarInputForm({car, submitHandler}) {
                     />
                 </Form.Group>
 
-                <Button className={"mt-3"} variant="primary" type="submit" disabled={isLoading}>
-                    {isLoading ? "Processing..." : "Submit"}
-                </Button>
-
+                <ButtonWithLoadingSpinner isLoading={isLoading} submitText={"Submit"}/>
             </Form>
         </>
     );

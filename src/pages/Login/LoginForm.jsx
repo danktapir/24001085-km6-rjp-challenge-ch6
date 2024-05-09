@@ -4,6 +4,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {login} from "../../redux/actions/authAction.js";
 import {useDispatch} from "react-redux";
+import ButtonWithLoadingSpinner from "../../components/ButtonWithLoadingSpinner.jsx";
 
 export default function LoginForm() {
     const [email, setEmail] = useState("");
@@ -37,9 +38,7 @@ export default function LoginForm() {
                               onChange={(event) => setPassword(event.target.value)}/>
             </Form.Group>
 
-            <Button variant="primary" type="submit" disabled={isLoading}>
-                {isLoading ? "Processing..." : "Submit"}
-            </Button>
+            <ButtonWithLoadingSpinner isLoading={isLoading} submitText={"Login"}/>
         </Form>
     );
 }

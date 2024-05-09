@@ -4,6 +4,7 @@ import placeholderImage from "../../assets/placeholder_img.svg";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {getProperPrivilegeName} from "../../utils/privileges.js";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner.jsx";
 
 export default function Profile() {
     const user = useSelector((state) => state.auth.user);
@@ -19,7 +20,7 @@ export default function Profile() {
     return (
         <>
             {isLoading ? (
-                <h2>Loading...</h2>
+                <LoadingSpinner/>
             ) : (
                 <Form>
                     <Image className={"img-fluid"} src={user?.image ?? placeholderImage} rounded/>

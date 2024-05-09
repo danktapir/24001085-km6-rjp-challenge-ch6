@@ -31,7 +31,7 @@ export const deleteCar = (carId) => async (dispatch, getState) => {
     const config = {
         method: 'delete',
         maxBodyLength: Infinity,
-        url: `${import.meta.env.VITE_BACKEND_BASE_API}/cars/${carId}`,
+        url: `${AppRoutes.BACKEND_BASE_API}/cars/${carId}`,
         headers: {
             'Authorization': `Bearer ${token}`,
         },
