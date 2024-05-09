@@ -1,5 +1,5 @@
 import {Card} from "react-bootstrap";
-import placeholderImage from "../../../assets/placeholder_img.svg";
+import placeholderImage from "../../../../public/assets/placeholder_img.svg";
 import Button from "react-bootstrap/Button";
 import CarFeatures from "./CarFeatures.jsx";
 import {useNavigate} from "react-router-dom";

@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import "./CarDetails.css";
 import {useLocation} from "react-router-dom";
-import placeholderImage from "../../assets/placeholder_img.svg";
+import placeholderImage from "../../../public/assets/placeholder_img.svg";
 import {Col, Image, Row} from "react-bootstrap";
 import {getProperTransmissionName} from "../../utils/carTransmissions.js";
 

@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form";
 import {Image} from "react-bootstrap";
-import placeholderImage from "../../assets/placeholder_img.svg";
+import placeholderImage from "../../../public/assets/placeholder_img.svg";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {getProperPrivilegeName} from "../../utils/privileges.js";
