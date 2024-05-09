@@ -41,7 +41,6 @@ export default function BaseCarInputForm({car, submitHandler}) {
         if (car?.id) {
             payload = {...payload, id: car?.id}
         }
-        console.log(payload);
         await dispatch(submitHandler(navigate, payload));
         setIsLoading(false);
     }
@@ -100,53 +99,36 @@ export default function BaseCarInputForm({car, submitHandler}) {
                     </Col>
                 </Row>
 
-                <Form.Group className="mt-2">
-                    <Form.Label>Transmission</Form.Label>
-                    <Form.Select aria-label="Default select example" defaultValue={car?.transmission ?? transmission}
-                                 onChange={(event) => setTransmission(event.target.value)}>
-                        <option value={CarTransmissions.MANUAL}>Manual</option>
-                        <option value={CarTransmissions.AUTOMATIC}>Automatic</option>
-                    </Form.Select>
-                </Form.Group>
+                <Row>
+                    <Col lg={6}>
+                        <Form.Group className="mt-2">
+                            <Form.Label>Transmission</Form.Label>
+                            <Form.Select aria-label="Default select example"
+                                         defaultValue={car?.transmission ?? transmission}
+                                         onChange={(event) => setTransmission(event.target.value)}>
+                                <option value={CarTransmissions.MANUAL}>Manual</option>
+                                <option value={CarTransmissions.AUTOMATIC}>Automatic</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Col>
+                    <Col lg={6}>
+                        <Form.Group className="mt-2">
+                            <Form.Label>Status</Form.Label>
+                            <Form.Select aria-label="Default select example" defaultValue={available}
+                                         onChange={(event) => setAvailable(event.target.value)}>
+                                <option value={true}>Available</option>
+                                <option value={false}>Not Available</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Col>
+                </Row>
 
                 <Form.Group controlId="photoInput" className="mt-2">
                     <Form.Label>Photo</Form.Label>
                     {/*
                     ga bisa ngasih default value untuk input field type file :(
                     */}
-                    <Form.Control type="file" onChange={(event) => {
-                        console.log(event.target.files[0]);
-                        setImage(event.target.files[0]);
-                    }}/>
-                </Form.Group>
-
-                <Form.Group className="mt-2">
-                    <Form.Label>Status</Form.Label>
-                    <br/>
-                    <Form.Check
-                        inline
-                        type="radio"
-                        label="Available"
-                        name="inlineRadioOptions"
-                        id="inlineRadio1"
-                        value={"true"}
-                        defaultChecked={!car ? true : available}
-                        onChange={(event) => {
-                            setAvailable((event.target.value === "true"));
-                        }}
-                    />
-                    <Form.Check
-                        inline
-                        type="radio"
-                        label="Not Available"
-                        name="inlineRadioOptions"
-                        id="inlineRadio2"
-                        value={"false"}
-                        defaultChecked={!car ? false : available}
-                        onChange={(event) => {
-                            setAvailable((event.target.value === "true"))
-                        }}
-                    />
+                    <Form.Control type="file" onChange={(event) => setImage(event.target.files[0])}/>
                 </Form.Group>
 
                 <Form.Group className="mt-2">
