@@ -38,7 +38,7 @@ export default function LoginForm() {
                               onChange={(event) => setPassword(event.target.value)}/>
             </Form.Group>
 
-            <ButtonWithLoadingSpinner isLoading={isLoading} submitText={"Login"}/>
+            <ButtonWithLoadingSpinner isLoading={isLoading} buttonText={"Login"}/>
         </Form>
     );
 }

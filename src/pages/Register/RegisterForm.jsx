@@ -53,7 +53,7 @@ export default function RegisterForm({props}) {
                 <Form.Control type="file" onChange={(event) => setImage(event.target.files[0])}/>
             </Form.Group>
 
-            <ButtonWithLoadingSpinner isLoading={isLoading} submitText={"Register"}/>
+            <ButtonWithLoadingSpinner isLoading={isLoading} buttonText={"Register"}/>
         </Form>
     );
 }

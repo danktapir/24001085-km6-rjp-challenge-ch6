@@ -3,8 +3,7 @@ import {CarTransmissions} from "../utils/carTransmissions.js";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import Form from "react-bootstrap/Form";
-import {Col, Row, Spinner} from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import {Col, Row} from "react-bootstrap";
 import ButtonWithLoadingSpinner from "./ButtonWithLoadingSpinner.jsx";
 
 export default function BaseCarInputForm({car, submitHandler}) {
@@ -42,6 +41,7 @@ export default function BaseCarInputForm({car, submitHandler}) {
         if (car?.id) {
             payload = {...payload, id: car?.id}
         }
+        console.log(payload);
         await dispatch(submitHandler(navigate, payload));
         setIsLoading(false);
     }
@@ -127,10 +127,9 @@ export default function BaseCarInputForm({car, submitHandler}) {
                         name="inlineRadioOptions"
                         id="inlineRadio1"
                         value={"true"}
-                        defaultChecked={car?.available ?? true}
+                        defaultChecked={!car ? true : available}
                         onChange={(event) => {
-                            const parsedValue = Boolean(event.target.value);
-                            setAvailable(parsedValue);
+                            setAvailable((event.target.value === "true"));
                         }}
                     />
                     <Form.Check
@@ -140,10 +139,9 @@ export default function BaseCarInputForm({car, submitHandler}) {
                         name="inlineRadioOptions"
                         id="inlineRadio2"
                         value={"false"}
-                        defaultValue={car?.available}
+                        defaultChecked={!car ? false : available}
                         onChange={(event) => {
-                            const parsedValue = Boolean(event.target.value);
-                            setAvailable(parsedValue);
+                            setAvailable((event.target.value === "true"))
                         }}
                     />
                 </Form.Group>
@@ -159,7 +157,7 @@ export default function BaseCarInputForm({car, submitHandler}) {
                     />
                 </Form.Group>
 
-                <ButtonWithLoadingSpinner isLoading={isLoading} submitText={"Submit"}/>
+                <ButtonWithLoadingSpinner isLoading={isLoading} buttonText={"Submit"}/>
             </Form>
         </>
     );
