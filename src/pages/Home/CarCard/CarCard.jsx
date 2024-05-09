@@ -4,18 +4,15 @@ import Button from "react-bootstrap/Button";
 import CarFeatures from "./CarFeatures.jsx";
 import {useNavigate} from "react-router-dom";
 import {AppRoutes} from "../../../utils/appRoutes.js";
-import {useDispatch} from "react-redux";
 import {Privileges} from "../../../utils/privileges.js";
 import {useState} from "react";
 import DeleteCarModal from "../DeleteCarModal.jsx";
-import {updateSelectedCar} from "../../../redux/actions/carAction.js";
 
 export default function CarCard({user, car}) {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleCloseModal = () => setShow(false);
+    const handleShowModal = () => setShow(true);
 
     return (
         <>
@@ -35,7 +32,7 @@ export default function CarCard({user, car}) {
                     }}>
                         View Full Details
                     </Button>
-                    {(user.privilege === Privileges.ADMIN || user.privilege === Privileges.SUPERADMIN) && (
+                    {(user?.privilege === Privileges.ADMIN || user?.privilege === Privileges.SUPERADMIN) && (
                         <>
                             <Button className={"w-100 mt-2"} variant={"outline-success"} onClick={(event) => {
                                 event.preventDefault();
@@ -43,11 +40,11 @@ export default function CarCard({user, car}) {
                             }}>
                                 Edit
                             </Button>
-                            <Button className={"w-100 mt-2"} variant={"outline-danger"} onClick={handleShow}>
+                            <Button className={"w-100 mt-2"} variant={"outline-danger"} onClick={handleShowModal}>
                                 Delete
                             </Button>
-                            <DeleteCarModal carId={car?.id} isShowing={show} handleClose={handleClose}
-                                            handleShow={handleShow}/>
+                            <DeleteCarModal carId={car?.id} isShowing={show} handleClose={handleCloseModal}
+                                            handleShow={handleShowModal}/>
                         </>
                     )}
                 </Card.Footer>

@@ -5,14 +5,13 @@ import {setToken, setUser} from "../reducers/authReducer.js";
 import {Privileges} from "../../utils/privileges.js";
 
 export const login = (navigate, payload) => async (dispatch) => {
-    const data = JSON.stringify(payload);
     const config = {
         method: "post",
         url: `${AppRoutes.BACKEND_BASE_API}/auth/login`,
         headers: {
             "Content-Type": "application/json",
         },
-        data,
+        data: payload,
     };
 
     try {
@@ -40,7 +39,7 @@ export const register = (navigate, payload) => async () => {
     const {email, password, confirmPassword, image} = payload;
 
     if (password !== confirmPassword) {
-        toast.error("Passwords don't match");
+        toast.error("Passwords do not match");
         return;
     }
 

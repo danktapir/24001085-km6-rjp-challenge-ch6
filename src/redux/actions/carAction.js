@@ -3,8 +3,9 @@ import axios from "axios";
 import {setCars, setSelectedCar} from "../reducers/carReducer.js";
 import {AppRoutes} from "../../utils/appRoutes.js";
 
-export const fetchAllCars = () => async (dispatch) => {
-    const token = localStorage.getItem('token');
+export const fetchAllCars = () => async (dispatch, getState) => {
+    const state = getState();
+    const token = state.auth.token;
     const config = {
         method: 'get',
         maxBodyLength: Infinity,
