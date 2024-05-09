@@ -114,7 +114,10 @@ export default function BaseCarInputForm({car, submitHandler}) {
                     {/*
                     ga bisa ngasih default value untuk input field type file :(
                     */}
-                    <Form.Control type="file" onChange={(event) => setImage(event.target.files[0])}/>
+                    <Form.Control type="file" onChange={(event) => {
+                        console.log(event.target.files[0]);
+                        setImage(event.target.files[0]);
+                    }}/>
                 </Form.Group>
 
                 <Form.Group className="mt-2">

@@ -9,7 +9,7 @@ export const fetchAllCars = () => async (dispatch, getState) => {
     const config = {
         method: 'get',
         maxBodyLength: Infinity,
-        baseURL: `${import.meta.env.VITE_BACKEND_BASE_API}/cars`,
+        baseURL: `${AppRoutes.BACKEND_BASE_API}/cars`,
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -104,8 +104,14 @@ export const updateCar = (navigate, payload) => async (dispatch, getState) => {
      * kalo tipe imagenya string (udah di upload ke cloudinary),
      * berarti imagenya ga di update
      */
-    if (typeof updatedCar.image === "string") {
+    if (typeof updatedCar.image === "string" || !(updatedCar.image)) {
         delete updatedCar.image;
+    }
+
+    const formData = new FormData();
+
+    for (let field in updatedCar) {
+        formData.append(field, updatedCar[field]);
     }
 
     const config = {
@@ -115,7 +121,7 @@ export const updateCar = (navigate, payload) => async (dispatch, getState) => {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
-        data: updatedCar
+        data: formData
     };
 
     try {
