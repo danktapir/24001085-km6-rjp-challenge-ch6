@@ -1,8 +1,19 @@
-# React + Vite
+# Submission Challenge Chapter 6
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### Nama : Rasyad Jabbar Poncosewoyo
+#### Kelas : FSW-2
 
-Currently, two official plugins are available:
+## Daftar User Privileges
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Privilege   | Access(es)                                          |
+|-------------|-----------------------------------------------------|
+| Member      | Read cars' data                                     |
+| Admin       | Member's accesses + CUD cars' data                  |
+| Super Admin | Member's accesses + Admin's accesses + Create Admin |
+
+## Daftar User Super Admin
+
+| Email                | Password    |
+|----------------------|-------------|
+| superadmin1@mail.com | superadmin1 |
+| superadmin2@mail.com | superadmin2 |
