@@ -5,6 +5,7 @@ import {Privileges} from "../../utils/privileges.js";
 import {register} from "../../redux/actions/authAction.js";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import ButtonWithLoadingSpinner from "../../components/ButtonWithLoadingSpinner.jsx";
 
 export default function RegisterForm({props}) {
     const [email, setEmail] = useState("");
@@ -52,9 +53,7 @@ export default function RegisterForm({props}) {
                 <Form.Control type="file" onChange={(event) => setImage(event.target.files[0])}/>
             </Form.Group>
 
-            <Button variant="primary" type="submit" disabled={isLoading}>
-                {isLoading ? "Processing..." : "Submit"}
-            </Button>
+            <ButtonWithLoadingSpinner isLoading={isLoading} buttonText={"Register"}/>
         </Form>
     );
 }

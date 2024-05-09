@@ -1,8 +1,10 @@
 import Form from "react-bootstrap/Form";
 import {Image} from "react-bootstrap";
-import placeholderPhoto from "../../assets/placeholder_img.svg";
+import placeholderImage from "../../assets/placeholder_img.svg";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
+import {getProperPrivilegeName} from "../../utils/privileges.js";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner.jsx";
 
 export default function Profile() {
     const user = useSelector((state) => state.auth.user);
@@ -18,10 +20,10 @@ export default function Profile() {
     return (
         <>
             {isLoading ? (
-                <h2>Loading...</h2>
+                <LoadingSpinner/>
             ) : (
                 <Form>
-                    <Image className={"img-fluid"} src={user?.image ?? placeholderPhoto} rounded/>
+                    <Image className={"img-fluid"} src={user?.image ?? placeholderImage} rounded/>
 
                     <Form.Group className="mb-3 mt-2" controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>
@@ -30,7 +32,7 @@ export default function Profile() {
 
                     <Form.Group className="mb-3">
                         <Form.Label>Privilege</Form.Label>
-                        <Form.Control disabled placeholder={user?.privilege}/>
+                        <Form.Control disabled placeholder={getProperPrivilegeName(user?.privilege)}/>
                     </Form.Group>
                 </Form>
             )}

@@ -1,10 +1,11 @@
 import {toast} from "react-toastify";
 import axios from "axios";
-import {addCars, setCars, setSelectedCar} from "../reducers/carReducer.js";
+import {setCars, setSelectedCar} from "../reducers/carReducer.js";
 import {AppRoutes} from "../../utils/appRoutes.js";
 
-export const fetchAllCars = () => async (dispatch) => {
-    const token = localStorage.getItem('token');
+export const fetchAllCars = () => async (dispatch, getState) => {
+    const state = getState();
+    const token = state.auth.token;
     const config = {
         method: 'get',
         maxBodyLength: Infinity,
@@ -31,7 +32,7 @@ export const deleteCar = (carId) => async (dispatch, getState) => {
     const config = {
         method: 'delete',
         maxBodyLength: Infinity,
-        url: `${import.meta.env.VITE_BACKEND_BASE_API}/cars/${carId}`,
+        url: `${AppRoutes.BACKEND_BASE_API}/cars/${carId}`,
         headers: {
             'Authorization': `Bearer ${token}`,
         },
@@ -60,7 +61,13 @@ export const addCar = (navigate, payload) => async (dispatch, getState) => {
         return;
     }
 
-    const formData = validateInputFields(payload);
+    const formData = new FormData();
+
+    for (let field in payload) {
+        if (payload[field]) {
+            formData.append(field, payload[field]);
+        }
+    }
 
     if (!formData) {
         return;
@@ -77,33 +84,49 @@ export const addCar = (navigate, payload) => async (dispatch, getState) => {
     };
 
     try {
-        const response = await axios.request(config);
-        const {data} = response.data;
-        dispatch(addCars(data));
-
+        await axios.request(config);
         toast.success("Added car successfully");
-        navigate(AppRoutes.HOME);
+        navigate(-1); // pop page (route)
     } catch (err) {
         toast.error(err?.response?.data?.message);
     }
 }
 
-const validateInputFields = (payload) => {
-    if (!payload.image) {
-        delete payload.image;
-    }
-    if (!payload.description) {
-        delete payload.description;
+export const updateCar = (navigate, payload) => async (dispatch, getState) => {
+    const state = getState();
+    const token = state.auth.token;
+
+    if (!token) {
+        return;
     }
 
-    const formData = new FormData();
+    const updatedCar = payload;
+    const carId = updatedCar.id;
+    console.log(updatedCar);
 
-    for (let field in payload) {
-        if (!payload[field]) {
-            toast.error(`Field ${field} must be filled!`);
-            return null;
-        }
-        formData.append(field, payload[field]);
+    /**
+     * kalo tipe imagenya string (udah di upload ke cloudinary),
+     * berarti imagenya ga di update
+     */
+    if (typeof updatedCar.image === "string") {
+        delete updatedCar.image;
     }
-    return formData;
+
+    const config = {
+        method: 'patch',
+        maxBodyLength: Infinity,
+        url: `${AppRoutes.BACKEND_BASE_API}/cars/${carId}`,
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
+        data: updatedCar
+    };
+
+    try {
+        await axios.request(config);
+        toast.success("Updated car successfully");
+        navigate(-1); // pop page (route)
+    } catch (err) {
+        toast.error(err?.response?.data?.message);
+    }
 }

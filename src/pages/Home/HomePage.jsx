@@ -8,6 +8,7 @@ import {toast} from "react-toastify";
 import PrivilegedActionsDropdown from "./PrivilegedActionsDropdown.jsx";
 import {Privileges} from "../../utils/privileges.js";
 import {getUserData} from "../../redux/actions/userAction.js";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner.jsx";
 
 export default function HomePage() {
     const carsData = useSelector((state) => state.car.carsData);
@@ -34,7 +35,7 @@ export default function HomePage() {
         <>
             <Container>
                 {isLoading ? (
-                    <h2>Loading...</h2>
+                    <LoadingSpinner/>
                 ) : (
                     <>
                         {(user?.privilege === Privileges.ADMIN || user?.privilege === Privileges.SUPERADMIN) && (

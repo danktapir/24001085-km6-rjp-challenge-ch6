@@ -25,9 +25,13 @@ export const getUserData = () => async (dispatch, getState) => {
         const {data} = response.data;
         dispatch(setUser(data));
     } catch (err) {
-        dispatch(setUser(null));
-        dispatch(setToken(null));
+        resetAuthState(dispatch);
         console.log("user profile error");
         toast.error(err?.response?.data?.message);
     }
+}
+
+const resetAuthState = (dispatch) => {
+    dispatch(setToken(null));
+    dispatch(setUser(null));
 }
