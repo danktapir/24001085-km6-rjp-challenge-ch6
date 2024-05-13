@@ -16,6 +16,8 @@ import CarDetailsPage from "./pages/CarDetails/CarDetailsPage.jsx";
 import RegisterAdminPage from "./pages/Register/RegisterAdminPage.jsx";
 import AddCarPage from "./pages/AddCar/AddCarPage.jsx";
 import EditCarPage from "./pages/EditCar/EditCarPage.jsx";
+import {GoogleOAuthProvider} from '@react-oauth/google';
+import {GoogleSecret} from "./utils/googleSecret.js";
 
 const router = createBrowserRouter([
     {
@@ -112,8 +114,10 @@ export default function App() {
     return (
         <>
             <Provider store={store}>
-                <RouterProvider router={router}/>
-                <ToastContainer theme={"colored"}/>
+                <GoogleOAuthProvider clientId={GoogleSecret.GOOGLE_CLIENT_ID}>
+                    <RouterProvider router={router}/>
+                    <ToastContainer theme={"colored"}/>
+                </GoogleOAuthProvider>
             </Provider>
         </>
     )

@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {login} from "../../redux/actions/authAction.js";
 import {useDispatch} from "react-redux";
 import ButtonWithLoadingSpinner from "../../components/ButtonWithLoadingSpinner.jsx";
+import GoogleLoginButton from "../../components/GoogleLoginButton.jsx";
 
 export default function LoginForm() {
     const [email, setEmail] = useState("");
@@ -37,7 +38,11 @@ export default function LoginForm() {
                               onChange={(event) => setPassword(event.target.value)}/>
             </Form.Group>
 
-            <ButtonWithLoadingSpinner isLoading={isLoading} buttonText={"Login"}/>
+            <div className={"mt-3"}>
+                <ButtonWithLoadingSpinner isLoading={isLoading} buttonText={"Login"}/>
+                <span className={"mx-2"}>or</span>
+                <GoogleLoginButton text={"Login with Google"}/>
+            </div>
         </Form>
     );
 }

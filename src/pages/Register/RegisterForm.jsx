@@ -5,6 +5,7 @@ import {register} from "../../redux/actions/authAction.js";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import ButtonWithLoadingSpinner from "../../components/ButtonWithLoadingSpinner.jsx";
+import GoogleLoginButton from "../../components/GoogleLoginButton.jsx";
 
 export default function RegisterForm() {
     const [email, setEmail] = useState("");
@@ -52,7 +53,11 @@ export default function RegisterForm() {
                 <Form.Control type="file" onChange={(event) => setImage(event.target.files[0])}/>
             </Form.Group>
 
-            <ButtonWithLoadingSpinner isLoading={isLoading} buttonText={"Register"}/>
+            <div className={"mt-3"}>
+                <ButtonWithLoadingSpinner isLoading={isLoading} buttonText={"Register"}/>
+                <span className={"mx-2"}>or</span>
+                <GoogleLoginButton text={"Register with Google"}/>
+            </div>
         </Form>
     );
 }

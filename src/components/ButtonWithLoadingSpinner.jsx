@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 export default function ButtonWithLoadingSpinner({isLoading, buttonText}) {
     return (
         <>
-            <Button className={"mt-3"} variant="primary" type="submit" disabled={isLoading}>
+            <Button variant="primary" type="submit" disabled={isLoading}>
                 {isLoading ? (
                     <>
                         <Spinner

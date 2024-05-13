@@ -30,6 +30,33 @@ export const login = (navigate, payload) => async (dispatch) => {
     }
 }
 
+export const loginWithGoogle = (navigate, payload) => async (dispatch) => {
+    // payload here is the access token required to get the corresponding google data
+    const config = {
+        method: "post",
+        url: `${AppRoutes.BACKEND_BASE_API}/auth/google-login`,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        data: JSON.stringify({access_token: payload}),
+    };
+
+    try {
+        const response = await axios.request(config);
+        const {data} = response.data;
+        const {token, user} = data;
+
+        dispatch(setToken(token));
+        dispatch(setUser(user));
+
+        toast.success("Logged in successfully");
+        navigate(AppRoutes.HOME);
+    } catch (err) {
+        toast.error(err?.response?.data?.message);
+        resetAuthState(dispatch);
+    }
+}
+
 const resetAuthState = (dispatch) => {
     dispatch(setToken(null));
     dispatch(setUser(null));
@@ -61,12 +88,11 @@ export const register = (navigate, payload) => async (_, getState) => {
      * kalo ga ada, pengen register member
      */
     if (token) {
-        formData.append("privilege", Privileges.ADMIN);
         privilege = Privileges.ADMIN;
     } else {
-        formData.append("privilege", Privileges.MEMBER);
         privilege = Privileges.MEMBER;
     }
+    formData.append("privilege", privilege);
 
     const config = {
         method: 'post',
